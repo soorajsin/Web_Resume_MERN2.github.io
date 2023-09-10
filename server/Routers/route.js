@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const userdb = require("../Model/userSchema");
 const bcrypt = require("bcryptjs");
+const authentication = require("../Middleware/Authentication");
 
 
 router.post("/register", async (req, res) => {
@@ -117,7 +118,15 @@ router.post("/login", async (req, res) => {
                               error: "User not login"
                     })
           }
+});
+
+
+
+//validation user
+router.get("/validUser", authentication, async (req, res) => {
+          console.log("done");
 })
+
 
 
 module.exports = router;
