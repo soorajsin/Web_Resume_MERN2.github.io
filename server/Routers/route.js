@@ -124,7 +124,23 @@ router.post("/login", async (req, res) => {
 
 //validation user
 router.get("/validUser", authentication, async (req, res) => {
-          console.log("done");
+          // console.log("done");
+          // console.log(req.getData);
+
+          if (req.getData) {
+                    // console.log("done");
+                    res.status(201).json({
+                              status: 205,
+                              message: "User Authenticate",
+                              getData: req.getData
+                    })
+
+          } else {
+                    // console.log("no");
+                    res.status(422).json({
+                              error: "User data not found"
+                    })
+          }
 })
 
 

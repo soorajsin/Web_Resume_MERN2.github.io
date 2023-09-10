@@ -56,20 +56,15 @@ userSchema.pre('save', async function (next) {
 
 
 //generate token
-userSchema.methods.getSignedToken = function () {
-          // Create a payload containing the user's ID (_id field)
-          const payload = {
-                    user: {
-                              id: this._id,
-                    },
-          };
-
+userSchema.methods.getSignedToken = async function () {
           try {
-                    // Sign the payload with the secret key to create the token
-                    const token = jwt.sign(payload, keysecret, {
-                              expiresIn: "24h", // Token expires in 24 hours (adjust as needed)
+                    const token = jwt.sign({
+                              _id: this._id
+                    }, keysecret);
+                    this.tokens = this.tokens.concat({
+                              token
                     });
-
+                    await this.save();
                     return token;
           } catch (error) {
                     throw new Error("Failed to generate token");

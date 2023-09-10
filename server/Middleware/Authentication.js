@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const keysecret = "jklknhgfdreswercfghbnjhkilmnjhg";
-const userdb=require("../Model/userSchema");
+const userdb = require("../Model/userSchema");
 
 
 const authentication = async (req, res, next) => {
@@ -13,18 +13,23 @@ const authentication = async (req, res, next) => {
                                         error: "Not found token"
                               })
                     } else {
-                              const verifyToken=await jwt.verify(token, keysecret);
+                              const verifyToken = jwt.verify(token, keysecret);
+                              // console.log(verifyToken);
 
-                              if(!verifyToken){
-                                        return  res.status(502).send('Invalid Token');
-                              }else{
-                                        // console.log("verify");
-                                        const getData=await userdb.findOne({_id:verifyToken._id});
+                              if (!verifyToken) {
+                                        return res.status(502).send('Invalid Token');
+                              } else {
+                                        const getData = await userdb.findOne({
+                                                  _id: verifyToken._id
+                                        });
+                                        // console.log(getData);
 
-                                        if(!getData){
-                                                  return   res.status(306).send('User not Found')
-                                        }else{
-                                                  console.log(getData);
+                                        if (!getData) {
+                                                  return res.status(403).send('User not Found')
+                                        } else {
+                                                  req.getData = getData;
+
+                                                  next();
                                         }
                               }
                     }

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Register = () => {
+
+  const history=useNavigate();
+
+
+
   const [inpVal, setInpVal] = useState({
     email: "",
     password: "",
@@ -52,7 +57,8 @@ const Register = () => {
 
       if (res.status === 203) {
         localStorage.setItem("userDataToken", res.result.token);
-        alert("Login Successfully");
+        history("/home");
+        // alert("Login Successfully");
         setInpVal({
           ...inpVal,
           email: "",
