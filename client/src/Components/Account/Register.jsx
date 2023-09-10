@@ -49,8 +49,23 @@ const Register = () => {
         body: JSON.stringify({ name, email, password, cpassword }),
       });
 
-      const res=await data.json();
+      const res = await data.json();
       console.log(res);
+
+      if (res.status === 201) {
+        alert("User Already Exist");
+      }
+
+      if (res.status === 202) {
+        alert("Registered Successfully");
+        setInpVal({
+          ...inpVal,
+          name: "",
+          email: "",
+          password: "",
+          cpassword: "",
+        });
+      }
     }
   };
 
