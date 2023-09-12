@@ -1,8 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { ContextNavigate } from "../ContextProvider/Context";
 import "./UpdateSKill.css";
+import { useNavigate } from "react-router-dom";
 
 const UpdateSkill = () => {
+  const history = useNavigate();
+
   const { userdata, setUserData } = useContext(ContextNavigate);
   // console.log(userdata);
 
@@ -52,9 +55,11 @@ const UpdateSkill = () => {
       // Skill successfully deleted, update the user data
       updateData();
       console.log(res);
+      history("/about");
     } else {
       // Handle errors, e.g., skill not found or server error
       console.error("Failed to delete skill");
+      history("*");
     }
   };
 

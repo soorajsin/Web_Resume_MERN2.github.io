@@ -207,10 +207,10 @@ router.delete("/deleteskill", authentication, async (req, res) => {
 
 
                               // Find and remove the skill by its ID
-                              user.skills = user.skills.filter((skill) => skill.id !== skillId);
+                              user.skills = user.skills.filter((skill) => skill.id === skillId);
                               // console.log(user.skills);
 
-                              // Save the updated user data
+                              // // Save the updated user data
                               const updatedUser = await user.save();
 
                               res.status(200).json({

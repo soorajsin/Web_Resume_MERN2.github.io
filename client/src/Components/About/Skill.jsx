@@ -47,7 +47,7 @@ const Skill = () => {
       if (res.status === 202) {
         //         console.log(res);
         history("/about");
-        alert("Your Skill Successfully in Database...");
+        // alert("Your Skill Successfully in Database...");
       } else {
         console.log("data not found");
         history("*");
