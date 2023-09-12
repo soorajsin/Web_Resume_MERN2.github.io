@@ -1,0 +1,74 @@
+* {
+          margin: 0;
+          padding: 0;
+}
+
+.about {
+          margin-left: 50px;
+}
+
+.about .left {
+          margin-left: 50px;
+}
+
+.about .left h3 {
+          margin-top: 170px;
+}
+
+.about .left h3 span {
+          color: red;
+          cursor: pointer;
+}
+
+.about .left p {
+          color: rgb(51, 42, 42);
+          font-size: 15px;
+}
+
+.about .right {
+          margin-left: 65%;
+          margin-top: 80px;
+}
+
+.about .right .skill {
+          margin-top: 20px;
+          margin-left: 20px;
+}
+
+.about .right .skill .addSkill .btn {
+          width: 300px;
+          font-size: 28px;
+}
+
+.about .right .skill .showSkill {
+          margin-bottom: 30px;
+          width: 300px;
+          /* background-color: aliceblue; */
+}
+
+.about .right .skill .showSkill .skillCSSHandle {
+          width: 300px;
+          height: 40px;
+          border-radius: 10px;
+          cursor: pointer;
+}
+
+.about .right .skill .showSkill .skillCSSHandle:hover {
+          background-color: #ff9a9e;
+}
+
+.about .right .skill .showSkill .skillCSSHandle i {
+          display: none;
+          margin-left: 200px;
+}
+
+.about .right .skill .showSkill .skillCSSHandle:hover i {
+          display: block;
+}
+
+.about .right .skill .showSkill .skillCSSHandle .handle {
+          margin-left: 50px;
+          font-size: 25px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+}

@@ -141,6 +141,46 @@ router.get("/validUser", authentication, async (req, res) => {
                               error: "User data not found"
                     })
           }
+});
+
+
+router.post("/skill", authentication, async (req, res) => {
+          // console.log(req.body);
+          try {
+                    const {
+                              skills
+                    } = req.body;
+                    // console.log(req.body);
+                    // console.log(skill);
+
+                    if (!skills || skills.length === "") {
+                              return res.status(422).json({
+                                        status: 201,
+                                        error: "Skill is empty"
+                              })
+                    } else {
+                              // console.log("find");
+                              const user = req.getData;
+                              // console.log(user);
+
+                              user.skills.push(...skills);
+                              // console.log(pus);
+
+                              const updatedUser = await user.save();
+                              // console.log(updatedUser);
+
+                              res.status(200).json({
+                                        status: 202,
+                                        message: "Skill added successfully",
+                                        user: updatedUser,
+                              });
+                    }
+
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Skill not add in database"
+                    })
+          }
 })
 
 
