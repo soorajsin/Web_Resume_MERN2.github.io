@@ -67,7 +67,7 @@ const About = () => {
                           <i
                             className="fa-solid fa-pen-to-square"
                             onClick={() => {
-                              history("/skill");
+                              history("/updateSkill");
                             }}
                           ></i>
                         </div>

@@ -181,7 +181,54 @@ router.post("/skill", authentication, async (req, res) => {
                               error: "Skill not add in database"
                     })
           }
-})
+});
+
+
+
+
+
+// Define a route for deleting a skill
+router.delete("/deleteskill", authentication, async (req, res) => {
+          try {
+                    const {
+                              skillId
+                    } = req.body; // Assuming you pass the skill ID in the request body
+
+                    // console.log(req.body);
+
+                    if (!skillId) {
+                              return res.status(400).json({
+                                        status: 400,
+                                        error: "Skill ID is required",
+                              });
+                    } else {
+                              const user = req.getData;
+                              // console.log(user);
+
+
+                              // Find and remove the skill by its ID
+                              user.skills = user.skills.filter((skill) => skill.id !== skillId);
+                              // console.log(user.skills);
+
+                              // Save the updated user data
+                              const updatedUser = await user.save();
+
+                              res.status(200).json({
+                                        status: 200,
+                                        message: "Skill deleted successfully",
+                                        user: updatedUser,
+                              });
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Skill deletion failed",
+                    });
+          }
+});
+
+
+
+
 
 
 
