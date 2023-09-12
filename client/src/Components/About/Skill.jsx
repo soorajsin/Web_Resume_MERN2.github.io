@@ -63,6 +63,15 @@ const Skill = () => {
           {skills.map((skill, index) => (
             <div className="inp" key={index}>
               <input
+                style={{
+                  borderRadius: "10px",
+                  height: "45px",
+                  paddingLeft: "10px",
+                  width: "300px",
+                  fontSize: "26px",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
                 type="text"
                 value={skill}
                 onChange={(e) => handleSkillChange(index, e.target.value)}
@@ -71,7 +80,11 @@ const Skill = () => {
             </div>
           ))}
           <div className="add">
-            <button onClick={addSkillInput} className="btn btn-primary">
+            <button
+              onClick={addSkillInput}
+              className="btn btn-primary"
+              style={{ width: "300px", fontSize: "26px" }}
+            >
               Add Skill
             </button>
           </div>

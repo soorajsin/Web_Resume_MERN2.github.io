@@ -63,7 +63,13 @@ const About = () => {
                       {index > 0 && <br />} {/* Add line break if index > 0 */}
                       <div className="skillCSSHandle">
                         <div className="handle">
-                          {skill} <i className="fa-solid fa-pen-to-square"></i>
+                          {skill}{" "}
+                          <i
+                            className="fa-solid fa-pen-to-square"
+                            onClick={() => {
+                              history("/skill");
+                            }}
+                          ></i>
                         </div>
                       </div>
                     </React.Fragment>
