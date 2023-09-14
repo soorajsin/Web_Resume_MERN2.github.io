@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./PersonalInfo.css";
+import { useNavigate } from "react-router-dom";
 
 const PersonalInfo = () => {
+  const history = useNavigate();
+
   const [inpVal, setInpVal] = useState({
     birthday: "",
     age: "",
@@ -64,7 +67,16 @@ const PersonalInfo = () => {
       });
 
       const res = await data.json();
-      console.log(res);
+      //       console.log(res);
+
+      if (res.status === 205) {
+        console.log(res);
+        alert("Personal Info Updated Successfully");
+        history("/about");
+      } else {
+        console.log("Personal Info not added");
+        history("*");
+      }
     }
   };
 

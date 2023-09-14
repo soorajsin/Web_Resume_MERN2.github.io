@@ -55,6 +55,20 @@ const About = () => {
           </p>
         </div>
         <div className="personalInfo">
+          <div className="showInfo">
+            {userdata ? (
+              <div>
+                {/* <p>Birthday: {userdata.getData[0].personalInfo.birthday}</p>
+                <p>Age: {userdata.getData[0].personalInfo.age}</p>
+                <p>Email: {userdata.getData[0].personalInfo.email}</p>
+                <p>Course: {userdata.getData[0].personalInfo.course}</p>
+                <p>Phone: {userdata.getData[0].personalInfo.phone}</p>
+                <p>City: {userdata.getData[0].personalInfo.city}</p> */}
+              </div>
+            ) : (
+              "Loading"
+            )}
+          </div>
           <div className="editInfo">
             <button
               onClick={() => history("/personalInfo")}

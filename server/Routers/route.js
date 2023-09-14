@@ -269,13 +269,20 @@ router.post("/personalInfo", authentication, async (req, res) => {
                                                   phone,
                                                   city
                                         };
-                                        console.log(newPersonalInfo);
+                                        // console.log(newPersonalInfo);
 
-                                        user.personalInfo.pull(newPersonalInfo);
-                                        console.log(user);
+                                        user.personalInfo = newPersonalInfo;
+                                        // user.personalInfoValue.pull(newPersonalInfo);
+                                        // console.log(user);
 
-                                        //const updatedUser = await user.save();
-                                        //console.log(updatedUser);
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+                                        res.status(202).json({
+                                                  status:205, 
+                                                  message:"Updated personalInfo Successfully!",
+                                                  updatedUser
+                                        })
                               }
                     }
 
@@ -283,6 +290,7 @@ router.post("/personalInfo", authentication, async (req, res) => {
                     res.status(422).json({
                               error: "Internal Server Error not personal Info found"
                     })
+                    console.log(error);
           }
 })
 

@@ -44,12 +44,15 @@ const userSchema = new mongoose.Schema({
                     type: String,
                     required: true
           }],
-          personalInfo:[
-                    {
-                              type:String,
-                              required:true
-                    }
-          ]
+          personalInfo: [{
+                    birthday: String,
+                    age: String,
+                    email: String,
+                    course: String,
+                    phone: String,
+                    city: String,
+          }]
+
 });
 
 
