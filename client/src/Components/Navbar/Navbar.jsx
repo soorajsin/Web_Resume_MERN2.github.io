@@ -129,7 +129,7 @@ const Navbar = () => {
                 {userdata ? (
                   userdata.getData.email.charAt(0).toUpperCase()
                 ) : (
-                  <Avatar></Avatar>
+                  "N"
                 )}
               </Avatar>
             </div>

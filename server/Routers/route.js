@@ -233,33 +233,6 @@ router.delete("/deleteskill", authentication, async (req, res) => {
 
 
 
-router.put("/updateOneSkillPart", authentication, async (req, res) => {
-          // console.log(req.body);
-
-          try {
-                    const {
-                              skillId, newValue
-                    } = req.body
-                    // console.log(req.body);
-
-                    if (!skillId || !newValue) {
-                              return res.status(400).json({
-                                        status: 400,
-                                        error: "Skill ID and new value are required",
-                              });
-                    } else {
-                              console.log("done");
-                    }
-
-          } catch (error) {
-                    res.status(422).json({
-                              error: "Interbal Server Error not update skill"
-                    })
-          }
-})
-
-
-
 
 
 
