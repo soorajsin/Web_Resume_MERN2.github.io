@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ContextNavigate } from "../ContextProvider/Context";
 import "./UpdateSKill.css";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,10 @@ const UpdateSkill = () => {
   const { userdata, setUserData } = useContext(ContextNavigate);
   // console.log(userdata);
 
-  const updateData = async () => {
+  const [editingSkill, setEditingSkill] = useState({});
+  // console.log(editingSkill);
+
+  const skillfetchData = async () => {
     const token = await localStorage.getItem("userDataToken");
     // console.log(token);
 
@@ -32,7 +35,7 @@ const UpdateSkill = () => {
   };
 
   useEffect(() => {
-    updateData();
+    skillfetchData();
   });
 
   const deleteSkillData = async (skillId) => {
@@ -53,7 +56,7 @@ const UpdateSkill = () => {
 
     if (data.status === 200) {
       // Skill successfully deleted, update the user data
-      updateData();
+      skillfetchData();
       console.log(res);
       history("/about");
     } else {
@@ -61,6 +64,42 @@ const UpdateSkill = () => {
       console.error("Failed to delete skill");
       history("*");
     }
+  };
+
+  const updateOneSkill = async (skillId) => {
+    const token = await localStorage.getItem("userDataToken");
+    // console.log(token);
+
+    const data = await fetch("http://localhost:4000/updateOneSkillPart", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ skillId, newValue: editingSkill }),
+    });
+    //     console.log(data);
+    const res = await data.json();
+    console.log(res);
+
+    if (res.status === 200) {
+      // Skill successfully updated, refresh user data
+      skillfetchData();
+      delete editingSkill[skillId]; // Reset editing state
+    } else {
+      console.log("not update");
+    }
+
+    // if (data.status === 200) {
+    //   // Skill successfully deleted, update the user data
+    //   skillfetchData();
+    //   console.log(res);
+    //   history("/about");
+    // } else {
+    //   // Handle errors, e.g., skill not found or server error
+    //   console.error("Failed to delete skill");
+    //   history("*");
+    // }
   };
 
   return (
@@ -73,12 +112,57 @@ const UpdateSkill = () => {
                   {index > 0 && <br />} {/* Add line break if index > 0 */}
                   <div className="skillCSSHandle">
                     <div className="handle">
-                      {skill} <i className="fa-solid fa-pen-to-square"></i>
+                      {editingSkill[skill] !== undefined ? (
+                        <>
+                          <input
+                            type="text"
+                            value={editingSkill[skill]}
+                            onChange={(e) => {
+                              const newValue = e.target.value;
+                              setEditingSkill((prevState) => ({
+                                ...prevState,
+                                [skill]: newValue,
+                              }));
+                            }}
+                          />
+                          <button
+                            onClick={() => {
+                              if (editingSkill[skill].trim() !== "") {
+                                updateOneSkill(skill);
+                              }
+                            }}
+                          >
+                            Save
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          {skill}{" "}
+                          <i
+                            onClick={() => {
+                              setEditingSkill((prevState) => ({
+                                ...prevState,
+                                [skill]: skill,
+                              }));
+                            }}
+                            className="fa-solid fa-pen-to-square"
+                          ></i>
+                          <br />
+                          <i
+                            onClick={() => deleteSkillData(skill)}
+                            className="fa-solid fa-trash"
+                          ></i>
+                        </>
+                      )}
+                      {/* <i
+                        onClick={() => updateOneSkill(skill)}
+                        className="fa-solid fa-pen-to-square"
+                      ></i>
                       <br />
                       <i
                         onClick={() => deleteSkillData(skill)}
                         className="fa-solid fa-trash"
-                      ></i>
+                      ></i> */}
                     </div>
                   </div>
                 </React.Fragment>

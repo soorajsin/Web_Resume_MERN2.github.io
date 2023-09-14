@@ -1,9 +1,40 @@
-import React from "react";
-import { AppBar, Toolbar } from "@mui/material";
+import React, { useContext, useEffect } from "react";
+import { AppBar, Avatar, Toolbar } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { ContextNavigate } from "../ContextProvider/Context";
 
 const Navbar = () => {
+  const { userdata, setUserData } = useContext(ContextNavigate);
+  // console.log(userdata);
+
+  const avatarForFetchData = async () => {
+    const token = await localStorage.getItem("userDataToken");
+    // console.log(token);
+
+    const data = await fetch("http://localhost:4000/validUser", {
+      method: "GET",
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: token,
+      },
+    });
+
+    const res = await data.json();
+    // console.log(res);
+
+    if (res.status === 205) {
+      // console.log(res);
+      setUserData(res);
+    } else {
+      console.log("user not found");
+    }
+  };
+
+  useEffect(() => {
+    avatarForFetchData();
+  });
+
   return (
     <>
       <div className="navbar">
@@ -92,6 +123,15 @@ const Navbar = () => {
                   Login
                 </NavLink>
               </button>
+            </div>
+            <div className="avatar">
+              <Avatar className="avatar-main">
+                {userdata ? (
+                  userdata.getData.email.charAt(0).toUpperCase()
+                ) : (
+                  <Avatar></Avatar>
+                )}
+              </Avatar>
             </div>
           </Toolbar>
         </AppBar>

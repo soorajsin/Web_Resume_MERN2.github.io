@@ -5,3 +5,11 @@
 .navbar .tab{
           margin-left: 60px;
 }
+.navbar .avatar{
+          margin-left: 200px;
+}
+.navbar .avatar .avatar-main{
+          background-color: blue;
+          color: #fff;
+          font-size: 30px;
+}

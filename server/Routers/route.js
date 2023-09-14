@@ -144,6 +144,8 @@ router.get("/validUser", authentication, async (req, res) => {
 });
 
 
+
+//skill add in databse
 router.post("/skill", authentication, async (req, res) => {
           // console.log(req.body);
           try {
@@ -205,13 +207,16 @@ router.delete("/deleteskill", authentication, async (req, res) => {
                               const user = req.getData;
                               // console.log(user);
 
+                              // const check = user.skills;
+                              // console.log(check);
 
-                              // Find and remove the skill by its ID
-                              user.skills = user.skills.filter((skill) => skill.id === skillId);
-                              // console.log(user.skills);
 
-                              // // Save the updated user data
+                              user.skills.pull(skillId);
+
+                              // Save the updated user data
                               const updatedUser = await user.save();
+
+
 
                               res.status(200).json({
                                         status: 200,
@@ -226,6 +231,32 @@ router.delete("/deleteskill", authentication, async (req, res) => {
           }
 });
 
+
+
+router.put("/updateOneSkillPart", authentication, async (req, res) => {
+          // console.log(req.body);
+
+          try {
+                    const {
+                              skillId, newValue
+                    } = req.body
+                    // console.log(req.body);
+
+                    if (!skillId || !newValue) {
+                              return res.status(400).json({
+                                        status: 400,
+                                        error: "Skill ID and new value are required",
+                              });
+                    } else {
+                              console.log("done");
+                    }
+
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Interbal Server Error not update skill"
+                    })
+          }
+})
 
 
 
