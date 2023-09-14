@@ -235,5 +235,60 @@ router.delete("/deleteskill", authentication, async (req, res) => {
 
 
 
+//personalInfo user
+router.post("/personalInfo", authentication, async (req, res) => {
+          // console.log(req.body);
+          try {
+                    const {
+                              birthday,
+                              age,
+                              email,
+                              course,
+                              phone,
+                              city
+                    } = req.body;
+
+                    if (!birthday || !age || !email || !course || !phone || !city) {
+                              return res.status(401).send("Please fill all fields");
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        return res.status(503).json({
+                                                  error: "Not Found User"
+                                        })
+                              } else {
+                                        // console.log(user);
+                                        //personalInfo
+
+                                        const newPersonalInfo = {
+                                                  birthday,
+                                                  age,
+                                                  email,
+                                                  course,
+                                                  phone,
+                                                  city
+                                        };
+                                        console.log(newPersonalInfo);
+
+                                        user.personalInfo.pull(newPersonalInfo);
+                                        console.log(user);
+
+                                        //const updatedUser = await user.save();
+                                        //console.log(updatedUser);
+                              }
+                    }
+
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error not personal Info found"
+                    })
+          }
+})
+
+
+
+
+
 
 module.exports = router;

@@ -54,6 +54,16 @@ const About = () => {
             full-stack developer
           </p>
         </div>
+        <div className="personalInfo">
+          <div className="editInfo">
+            <button
+              onClick={() => history("/personalInfo")}
+              className="btn btn-primary"
+            >
+              Edit Personal Information
+            </button>
+          </div>
+        </div>
         <div className="right">
           <div className="skill">
             <div className="showSkill">

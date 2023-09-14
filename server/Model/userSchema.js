@@ -43,7 +43,13 @@ const userSchema = new mongoose.Schema({
           skills: [{
                     type: String,
                     required: true
-          }]
+          }],
+          personalInfo:[
+                    {
+                              type:String,
+                              required:true
+                    }
+          ]
 });
 
 

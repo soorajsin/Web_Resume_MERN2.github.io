@@ -10,6 +10,7 @@ import Contact from "./Components/Contact/Contact";
 import Error from "./Components/Error/Error";
 import Skill from "./Components/About/Skill";
 import UpdateSkill from "./Components/About/UpdateSkill";
+import PersonalInfo from "./Components/About/PersonalInfo";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="/skill" element={<Skill/>}/>
           <Route path="/updateSkill" element={<UpdateSkill/>}/>
+          <Route path="/personalInfo" element={<PersonalInfo/>}/>
         </Routes>
       </BrowserRouter>
     </>
