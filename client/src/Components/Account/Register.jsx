@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import "./LoginRegister.css";
 
 const Register = () => {
   const [inpVal, setInpVal] = useState({
@@ -72,7 +73,7 @@ const Register = () => {
   return (
     <>
       <div className="register">
-        <h1>Register</h1>
+        <h1 className="btn btn-danger">Welcome to Register</h1>
         <br />
         <div className="form">
           <label htmlFor="name">Name</label>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import "./LoginRegister.css";
 
 const Register = () => {
 
@@ -71,7 +72,7 @@ const Register = () => {
   return (
     <>
       <div className="register">
-        <h1>Welcome to Login</h1>
+        <h1 className="btn btn-danger"> Welcome to Login</h1>
         <br />
         <div className="form">
           <label htmlFor="email">Email</label>

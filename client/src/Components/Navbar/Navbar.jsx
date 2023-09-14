@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { AppBar, Avatar, Toolbar } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Avatar from "@mui/material/Avatar";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { ContextNavigate } from "../ContextProvider/Context";
@@ -38,7 +40,7 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar">
-        <AppBar position="static">
+        <AppBar>
           <Toolbar>
             <div className="tab">
               <button className="btn btn-primary">
