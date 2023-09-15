@@ -56,6 +56,7 @@ const Service = () => {
       console.log(res);
     } else {
       console.log("not delete service");
+      // history("*");
     }
   };
 

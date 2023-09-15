@@ -51,6 +51,7 @@ const EditService = () => {
         history("/service");
       } else {
         console.log("not add service");
+        history("*");
       }
     }
   };

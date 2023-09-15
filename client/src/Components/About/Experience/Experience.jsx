@@ -56,6 +56,7 @@ const Experience = () => {
         history("/about");
       } else {
         console.log("not add experience");
+        history("*");
       }
     }
   };
