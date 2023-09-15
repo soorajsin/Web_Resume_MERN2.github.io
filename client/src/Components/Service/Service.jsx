@@ -1,9 +1,22 @@
-import React from 'react'
+import React from "react";
+import "./Service.css";
+import { useNavigate } from "react-router-dom";
 
 const Service = () => {
-  return (
-    <div>Service</div>
-  )
-}
+  const history = useNavigate();
 
-export default Service
+  return (
+    <>
+      <div className="service">
+        <div className="show"></div>
+        <div className="edit">
+          <div className="box" onClick={() => history("/editService")}>
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Service;

@@ -1,0 +1,22 @@
+*{
+          margin: 0;
+          padding: 0;
+}
+.service{
+          margin-top: 100px;
+          margin-left: 100px;
+          margin-right: 100px;
+}
+.service .box{
+          width: 250px;
+          height: 250px;
+          background-color: aqua;
+          border-radius: 10px;
+          text-align: center;
+          cursor: pointer;
+}
+.service .box i{
+          text-align: center;
+          margin-top: 25px;
+          font-size: 200px;
+}
