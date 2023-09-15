@@ -344,6 +344,73 @@ router.post("/editEducation", authentication, async (req, res) => {
                     })
                     console.log(error);
           }
+});
+
+
+
+router.delete("/deleteEducationOne", authentication, async (req, res) => {
+          // console.log(req.body);
+          try {
+                    const {
+                              educationId
+                    } = req.body;
+                    // console.log(req.body);
+
+                    if (!educationId) {
+                              res.status(422).json({
+                                        error: "education id not find"
+                              })
+                    } else {
+                              // console.log(educationId);
+
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        // console.log(user);
+
+                                        // Find the education entry with the provided educationId
+                                        const educationEntry = user.education.find(
+                                                  (education) => education._id.toString() === educationId
+                                        );
+
+                                        // console.log(educationEntry);
+
+                                        if (!educationEntry) {
+                                                  return res.status(422).send("No Education Found");
+                                        } else {
+
+
+                                                  // Remove the education entry from the user's data
+                                                  user.education = user.education.filter(
+                                                            (education) => education._id.toString() !== educationId
+                                                  );
+
+
+                                                  // Save the updated user data
+                                                  const updatedUser = await user.save();
+
+                                                  // console.log(updatedUser);
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: " Education Deleted Successfully",
+                                                            updatedUser
+                                                  })
+                                        }
+
+                              }
+                    }
+
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error not delete education"
+                    })
+          }
+
 })
 
 

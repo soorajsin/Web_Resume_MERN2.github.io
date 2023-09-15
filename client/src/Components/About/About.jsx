@@ -38,8 +38,9 @@ const About = () => {
     aboutFetchData();
   });
 
-  const deleteEducation = async (index) => {
+  const deleteEducation = async (educationId, index) => {
     const token = await localStorage.getItem("userDataToken");
+    // console.log(token);
 
     const data = await fetch("http://localhost:4000/deleteEducationOne", {
       method: "DELETE",
@@ -47,10 +48,18 @@ const About = () => {
         "Content-type": "application/json",
         Authorization: token,
       },
+      body: JSON.stringify({ educationId }),
     });
 
     const res = await data.json();
-    console.log(res);
+    // console.log(res);
+
+    if (res.status === 205) {
+      alert("Are you sure ");
+      console.log(res);
+    } else {
+      console.log("education detail not delete");
+    }
   };
 
   return (
@@ -139,7 +148,7 @@ const About = () => {
                       <p>Description: {education.description}</p>
                       <div className="deleteIcon">
                         <i
-                          onClick={deleteEducation(index)}
+                          onClick={() => deleteEducation(education._id, index)}
                           className="fa-sharp fa-solid fa-trash"
                         ></i>
                       </div>
