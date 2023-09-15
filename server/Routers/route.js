@@ -279,8 +279,8 @@ router.post("/personalInfo", authentication, async (req, res) => {
                                         // console.log(updatedUser);
 
                                         res.status(202).json({
-                                                  status:205, 
-                                                  message:"Updated personalInfo Successfully!",
+                                                  status: 205,
+                                                  message: "Updated personalInfo Successfully!",
                                                   updatedUser
                                         })
                               }
@@ -289,6 +289,58 @@ router.post("/personalInfo", authentication, async (req, res) => {
           } catch (error) {
                     res.status(422).json({
                               error: "Internal Server Error not personal Info found"
+                    })
+                    console.log(error);
+          }
+});
+
+
+
+//edit education
+router.post("/editEducation", authentication, async (req, res) => {
+          // console.log(req.body);
+          try {
+                    const {
+                              educationForms
+                    } = req.body;
+
+                    if (!educationForms || educationForms.length === 0) {
+                              return res.status(400).json({
+                                        status: 400,
+                                        error: "Education data is required",
+                              });
+                    } else {
+                              const user = req.getData;
+                              // console.log(user);
+
+                              if (!user) {
+                                        res.status(422).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        // console.log(user);
+
+                                        // user.skills.pull(skillId);
+                                        user.education.push(...educationForms);
+                                        // console.log(user);
+
+                                        // user.education = educationForms;
+                                        // console.log(user);
+
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+
+                                        res.status(201).json({
+                                                  status: 205,
+                                                  message: "Education Added Successfully",
+                                                  updatedUser
+                                        })
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Education detail not added"
                     })
                     console.log(error);
           }

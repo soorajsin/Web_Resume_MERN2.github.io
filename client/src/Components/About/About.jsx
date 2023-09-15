@@ -5,7 +5,7 @@ import { ContextNavigate } from "../ContextProvider/Context";
 
 const About = () => {
   const { userdata, setUserData } = useContext(ContextNavigate);
-  // console.log(userdata.getData);
+  // console.log(userdata);
 
   const history = useNavigate();
 
@@ -37,6 +37,21 @@ const About = () => {
   useEffect(() => {
     aboutFetchData();
   });
+
+  const deleteEducation = async (index) => {
+    const token = await localStorage.getItem("userDataToken");
+
+    const data = await fetch("http://localhost:4000/deleteEducationOne", {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: token,
+      },
+    });
+
+    const res = await data.json();
+    console.log(res);
+  };
 
   return (
     <>
@@ -115,7 +130,23 @@ const About = () => {
 
         <div className="education">
           <div className="education-part">
-            <div className="show-education"></div>
+            <div className="show-education">
+              {userdata
+                ? userdata.getData.education.map((education, index) => (
+                    <div key={index} className="education-data">
+                      <p>Duration: {education.duration}</p>
+                      <p>Course: {education.course}</p>
+                      <p>Description: {education.description}</p>
+                      <div className="deleteIcon">
+                        <i
+                          onClick={deleteEducation(index)}
+                          className="fa-sharp fa-solid fa-trash"
+                        ></i>
+                      </div>
+                    </div>
+                  ))
+                : "Loading"}
+            </div>
             <div className="edit-education">
               <button
                 onClick={() => history("/editEducation")}

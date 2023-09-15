@@ -51,7 +51,13 @@ const userSchema = new mongoose.Schema({
                     course: String,
                     phone: String,
                     city: String,
+          }],
+          education: [{
+                    duration: String,
+                    course: String,
+                    description: String
           }]
+
 
 });
 

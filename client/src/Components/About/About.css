@@ -93,14 +93,54 @@
 }
 
 
-.about .education{
+.about .education {
           margin-left: 50px;
           margin-bottom: 50px;
 }
-.about .education .education-part .edit-education{
+
+.about .education .education-part .edit-education {
           margin-top: 30px;
 }
-.about .education .education-part .edit-education button{
+
+.about .education .education-part .edit-education button {
           width: 300px;
           font-size: 27px;
+}
+
+.about .education .education-part .show-education {
+          margin-top: 50px;
+          margin-bottom: 50px;
+}
+
+.about .education .education-part .show-education .education-data {
+          width: 500px;
+          background-color: aliceblue;
+          border-radius: 10px;
+          margin-bottom: 30px;
+}
+
+.about .education .education-part .show-education .education-data p {
+          margin-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          font-size: 25px;
+}
+
+.about .education .education-part .show-education .education-data:hover {
+          background-color: #ff9a9e;
+}
+
+
+.about .education .education-part .show-education .education-data .deleteIcon{
+          margin-left: 450px;
+          padding-bottom: 20px;
+}
+
+.about .education .education-part .show-education .education-data .deleteIcon i{
+          font-size: 30px;
+          cursor: pointer;
+          display: none;
+}
+.about .education .education-part .show-education .education-data:hover i{
+          display: block;
 }
