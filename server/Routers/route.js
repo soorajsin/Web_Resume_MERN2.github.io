@@ -517,6 +517,101 @@ router.delete("/deleteExperience", authentication, async (req, res) => {
 
 
 
+//service add
+router.post("/editService", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+                    const {
+                              service
+                    } = req.body;
+
+                    if (!service) {
+                              return res.status(406).send('Please fill all fields');
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "Not found user"
+                                        })
+                              } else {
+                                        // console.log(user);
+
+                                        user.service.push(...service);
+
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+                                        res.status(201).json({
+                                                  status: 205,
+                                                  message: "Services Added Successfully!",
+                                                  updatedUser
+                                        })
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server error not add service  "
+                    })
+          }
+});
+
+
+
+//delete service
+router.delete("/deleteService", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+
+                    const {
+                              serviceId
+                    } = req.body;
+
+                    if (!serviceId) {
+                              res.status(422).json({
+                                        error: "Service id not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        return res.status(403).json("not found user");
+                              } else {
+                                        // console.log(user);
+
+                                        const serviceEntry = user.service.find((service) =>
+                                                  service._id.toString() === serviceId
+                                        );
+
+                                        // console.log(serviceEntry);
+
+                                        if (!serviceEntry) {
+                                                  return res.status(409).json('service id not found');
+                                        } else {
+                                                  // console.log(serviceEntry);
+
+                                                  user.service = user.service.filter((service) => service._id.toString() !== serviceId);
+
+                                                  const updatedUser = await user.save();
+                                                  // console.log(updatedUser);
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: "service deleted successfully ",
+                                                            updatedUser
+                                                  })
+                                        }
+
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server error not delete service"
+                    })
+          }
+})
+
+
 
 
 module.exports = router;

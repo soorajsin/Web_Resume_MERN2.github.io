@@ -61,6 +61,11 @@ const userSchema = new mongoose.Schema({
                     duration: String,
                     department: String,
                     description: String
+          }],
+          service: [{
+                    url: String,
+                    name: String,
+                    description: String
           }]
 
 
