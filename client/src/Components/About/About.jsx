@@ -166,6 +166,20 @@ const About = () => {
             </div>
           </div>
         </div>
+
+        <div className="experience">
+          <div className="experience-content">
+            <div className="show-experience"></div>
+            <div className="edit-experience">
+              <button
+                onClick={() => history("/editExperience")}
+                className="btn btn-danger"
+              >
+                Edit Experience
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

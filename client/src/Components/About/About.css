@@ -26,7 +26,7 @@
 }
 
 .about .right {
-          margin-left: 65%;
+          margin-left: 60%;
           margin-top: 80px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .about .right .skill .addSkill .btn {
-          width: 300px;
+          width: 400px;
           font-size: 28px;
 }
 
@@ -47,7 +47,8 @@
 }
 
 .about .right .skill .showSkill .skillCSSHandle {
-          width: 300px;
+          width: 400px;
+          background-color: aliceblue;
           border-radius: 10px;
           cursor: pointer;
 }
@@ -58,7 +59,7 @@
 
 .about .right .skill .showSkill .skillCSSHandle i {
           display: none;
-          margin-left: 200px;
+          margin-left: 330px;
 }
 
 .about .right .skill .showSkill .skillCSSHandle:hover i {
@@ -113,7 +114,7 @@
 }
 
 .about .education .education-part .show-education .education-data {
-          width: 500px;
+          width: 550px;
           background-color: aliceblue;
           border-radius: 10px;
           margin-bottom: 30px;
@@ -143,4 +144,19 @@
 }
 .about .education .education-part .show-education .education-data:hover i{
           display: block;
+}
+
+
+
+.about .experience{
+          margin-left: 50px;
+}
+.about  .experience .experience-content{
+          margin-left: 60%;
+          margin-top: 100px;
+          margin-bottom: 100px;
+}
+.about .experience .experience-content .edit-experience button{
+          width: 400px;
+          font-size: 30px;
 }
