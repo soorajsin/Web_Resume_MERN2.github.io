@@ -411,6 +411,107 @@ router.delete("/deleteEducationOne", authentication, async (req, res) => {
                     })
           }
 
+});
+
+
+
+
+//editExperience
+router.post("/editExperience", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+                    const {
+                              experienceForms
+                    } = req.body;
+                    // console.log(experienceForms);
+
+                    if (!experienceForms || experienceForms.length === 0) {
+                              throw new Error('Please enter your experience');
+                    } else {
+                              const user = req.getData;
+                              // console.log(user);
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        user.experience.push(...experienceForms);
+
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+                                        res.status(201).json({
+                                                  status: 205,
+                                                  message: " Experience Updated Successfully ",
+                                                  updatedUser
+                                        })
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error Experience data not added"
+                    })
+          }
+});
+
+
+
+//experience delete
+router.delete("/deleteExperience", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+                    const {
+                              experienceId
+                    } = req.body;
+
+                    if (!experienceId) {
+                              res.status(422).json({
+                                        error: "Experience id not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        // console.log(user);
+
+                                        const experienceEntry = user.experience.find(
+                                                  (experience) => experience._id.toString() === experienceId
+                                        );
+
+                                        // console.log(experienceEntry);
+
+                                        if (!experienceEntry) {
+                                                  return res.status(403).send("Invalid Id");
+                                        } else {
+
+                                                  user.experience = user.experience.filter(
+                                                            (experience) => experience._id.toString() !== experienceId
+                                                  );
+
+                                                  // console.log(user.experience);
+
+                                                  const updatedUser = await user.save();
+                                                  // console.log(updatedUser);
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: "Experience Deleted successfully!",
+                                                            updatedUser
+                                                  })
+                                        }
+                              }
+                    }
+
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error Not delete experience data"
+                    })
+          }
 })
 
 

@@ -56,6 +56,11 @@ const userSchema = new mongoose.Schema({
                     duration: String,
                     course: String,
                     description: String
+          }],
+          experience: [{
+                    duration: String,
+                    department: String,
+                    description: String
           }]
 
 

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./Experience.css";
+import { useNavigate } from "react-router-dom";
 
 const Experience = () => {
+  const history = useNavigate();
+
   const [experienceForms, setExperienceForm] = useState([
     {
       duration: "",
@@ -25,7 +28,7 @@ const Experience = () => {
       (form) =>
         form.duration === "" ||
         form.department === "" ||
-        form.describtion === ""
+        form.description === ""
     );
 
     if (emptyField) {
@@ -37,7 +40,7 @@ const Experience = () => {
       //       console.log(token);
 
       const data = await fetch("http://localhost:4000/editExperience", {
-        method: "POTS",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
@@ -46,7 +49,14 @@ const Experience = () => {
       });
 
       const res = await data.json();
-      console.log(res);
+      //       console.log(res);
+
+      if (res.status === 205) {
+        console.log(res);
+        history("/about");
+      } else {
+        console.log("not add experience");
+      }
     }
   };
 
@@ -91,10 +101,10 @@ const Experience = () => {
               <label htmlFor="describtion">Describtion</label>
               <br />
               <textarea
-                value={subform.describtion}
+                value={subform.description}
                 onChange={(e) => {
                   const updatedForms = [...experienceForms];
-                  updatedForms[index].describtion = e.target.value;
+                  updatedForms[index].description = e.target.value;
                   setExperienceForm(updatedForms);
                 }}
                 placeholder="Enter your describtion"

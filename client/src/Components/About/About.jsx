@@ -62,6 +62,31 @@ const About = () => {
     }
   };
 
+  //delete experience
+  const deleteExperience = async (experienceId, index) => {
+    const token = await localStorage.getItem("userDataToken");
+    // console.log(token);
+
+    const data = await fetch("http://localhost:4000/deleteExperience", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ experienceId }),
+    });
+
+    const res = await data.json();
+    // console.log(res);
+
+    if (res.status === 205) {
+      console.log(res);
+      alert("Are you Sure");
+    } else {
+      console.log("Experience not deleted");
+    }
+  };
+
   return (
     <>
       <div className="about">
@@ -169,7 +194,25 @@ const About = () => {
 
         <div className="experience">
           <div className="experience-content">
-            <div className="show-experience"></div>
+            <div className="show-experience">
+              {userdata
+                ? userdata.getData.experience.map((experience, index) => (
+                    <div key={index} className="show-data">
+                      <p>Duration: {experience.duration}</p>
+                      <p>Department: {experience.department}</p>
+                      <p>Describtion: {experience.description}</p>
+                      <div className="icon">
+                        <i
+                          onClick={() =>
+                            deleteExperience(experience._id, index)
+                          }
+                          className="fa-sharp fa-solid fa-trash"
+                        ></i>
+                      </div>
+                    </div>
+                  ))
+                : "Loading"}
+            </div>
             <div className="edit-experience">
               <button
                 onClick={() => history("/editExperience")}

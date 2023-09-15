@@ -132,31 +132,68 @@
 }
 
 
-.about .education .education-part .show-education .education-data .deleteIcon{
+.about .education .education-part .show-education .education-data .deleteIcon {
           margin-left: 450px;
           padding-bottom: 20px;
 }
 
-.about .education .education-part .show-education .education-data .deleteIcon i{
+.about .education .education-part .show-education .education-data .deleteIcon i {
           font-size: 30px;
           cursor: pointer;
           display: none;
 }
-.about .education .education-part .show-education .education-data:hover i{
+
+.about .education .education-part .show-education .education-data:hover i {
           display: block;
 }
 
 
 
-.about .experience{
+.about .experience {
           margin-left: 50px;
 }
-.about  .experience .experience-content{
-          margin-left: 60%;
+
+.about .experience .experience-content {
+          margin-left: 50%;
           margin-top: 100px;
           margin-bottom: 100px;
 }
-.about .experience .experience-content .edit-experience button{
+
+.about .experience .experience-content .edit-experience button {
           width: 400px;
           font-size: 30px;
+}
+
+.about .experience .experience-content .show-experience .show-data {
+          width: 500px;
+          background-color: aliceblue;
+          border-radius: 10px;
+          margin-bottom: 30px;
+          padding-left: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+}
+
+.about .experience .experience-content .show-experience .show-data p {
+          font-size: 30px;
+          cursor: pointer;
+}
+
+.about .experience .experience-content .show-experience .show-data:hover {
+          background-color: #ff9a9e;
+}
+
+.about .experience .experience-content .show-experience .show-data .icon {
+          margin-left: 430px;
+          font-size: 25px;
+}
+
+.about .experience .experience-content .show-experience .show-data .icon i {
+          padding-bottom: 20px;
+          cursor: pointer;
+          display: none;
+}
+
+.about .experience .experience-content .show-experience .show-data:hover i {
+          display: block;
 }
