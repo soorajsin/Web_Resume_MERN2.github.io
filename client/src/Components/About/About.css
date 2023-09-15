@@ -73,10 +73,34 @@
 }
 
 
-.about .personalInfo{
+.about .personalInfo {
           margin-left: 50px;
           margin-top: 100px;
 }
-.about .personalInfo .editInfo .btn{
+
+.about .personalInfo .editInfo .btn {
           font-size: 25px;
+}
+
+.about .personalInfo .showInfo {
+          margin-top: 20px;
+          margin-bottom: 30px;
+}
+
+.about .personalInfo .showInfo .showInfo-data p {
+          font-size: 23px;
+          cursor: pointer;
+}
+
+
+.about .education{
+          margin-left: 50px;
+          margin-bottom: 50px;
+}
+.about .education .education-part .edit-education{
+          margin-top: 30px;
+}
+.about .education .education-part .edit-education button{
+          width: 300px;
+          font-size: 27px;
 }

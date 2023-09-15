@@ -57,13 +57,13 @@ const About = () => {
         <div className="personalInfo">
           <div className="showInfo">
             {userdata ? (
-              <div>
-                {/* <p>Birthday: {userdata.getData[0].personalInfo.birthday}</p>
-                <p>Age: {userdata.getData[0].personalInfo.age}</p>
-                <p>Email: {userdata.getData[0].personalInfo.email}</p>
-                <p>Course: {userdata.getData[0].personalInfo.course}</p>
-                <p>Phone: {userdata.getData[0].personalInfo.phone}</p>
-                <p>City: {userdata.getData[0].personalInfo.city}</p> */}
+              <div className="showInfo-data">
+                <p>Birthday: {userdata.getData.personalInfo[0].birthday}</p>
+                <p>Age: {userdata.getData.personalInfo[0].age}</p>
+                <p>Email: {userdata.getData.personalInfo[0].email}</p>
+                <p>Course: {userdata.getData.personalInfo[0].course}</p>
+                <p>Phone: {userdata.getData.personalInfo[0].phone}</p>
+                <p>City: {userdata.getData.personalInfo[0].city}</p>
               </div>
             ) : (
               "Loading"
@@ -108,6 +108,20 @@ const About = () => {
                 >
                   Add Skill
                 </NavLink>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="education">
+          <div className="education-part">
+            <div className="show-education"></div>
+            <div className="edit-education">
+              <button
+                onClick={() => history("/editEducation")}
+                className="btn btn-danger"
+              >
+                Edit Education
               </button>
             </div>
           </div>
