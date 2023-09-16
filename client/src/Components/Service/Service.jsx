@@ -22,6 +22,11 @@ const Service = () => {
       },
     });
 
+    // if (!data.ok) {
+    //   // Handle non-successful response (e.g., status code other than 200)
+    //   throw new Error(`Request failed with status: ${data.status}`);
+    // }
+
     const res = await data.json();
     // console.log(res);
 

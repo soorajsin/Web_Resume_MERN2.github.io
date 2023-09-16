@@ -17,6 +17,7 @@ import EditService from "./Components/Service/ServiceChanged/EditService";
 import EditProject from "./Components/Portfolio/ChangePortfolio/EditProject";
 import EditCertificate from "./Components/Portfolio/Certificate/EditCertificate";
 import EditContact from "./Components/Contact/ChangeContact/EditContact";
+import EditPhoto from "./Components/Home/Photo/EditPhoto";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/editProject" element={<EditProject/>}/>
           <Route path="/editCertificate" element={<EditCertificate/>}/>
           <Route path="/editContact" element={<EditContact/>}/>
+          <Route path="/editPhoto" element={<EditPhoto/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -47,6 +47,29 @@ const Home = () => {
             <span>{userdata ? userdata.getData.name : "Loading"}</span>
           </h3>
         </div>
+        <div className="tag">
+          <p>I'm a website design, graphic design, and many more...</p>
+        </div>
+        <div className="tag">
+          <button
+            onClick={() => history("/contact")}
+            className="btn btn-danger"
+          >
+            Contact
+          </button>
+        </div>
+        <div className="img">
+        </div>
+        <div className="img">
+          {/* <div className="button">
+            <button
+              onClick={() => history("/editPhoto")}
+              className="btn btn-primary"
+            >
+              Set Profile Photo
+            </button>
+          </div> */}
+        </div>
       </div>
     </>
   );
