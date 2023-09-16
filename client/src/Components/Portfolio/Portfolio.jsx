@@ -7,6 +7,7 @@ const Portfolio = () => {
   const history = useNavigate();
 
   const { userdata, setUserData } = useContext(ContextNavigate);
+  // console.log(userdata);
 
   const portfoliofetchdata = async () => {
     const token = await localStorage.getItem("userDataToken");
@@ -96,7 +97,34 @@ const Portfolio = () => {
             </div>
           </div>
         </div>
-        <div className="certificate"></div>
+        <div className="certificate">
+          <h1>Certificate</h1>
+          <br />
+          <div className="show">
+            {userdata
+              ? userdata.getData.certificate.map((certificate, index) => (
+                  <div key={index} className="data">
+                    <a href={certificate.certificateLiveURL}>
+                      <img
+                        src={certificate.certificateIMGURL}
+                        alt={certificate.name}
+                      />
+                    </a>
+                    <h3>{certificate.name}</h3>
+                    <p>{certificate.description}</p>
+                    <div className="deleteIcon">
+                      <i className="fa-solid fa-trash"></i>
+                    </div>
+                  </div>
+                ))
+              : "Loading"}
+          </div>
+          <div className="add">
+            <div className="box" onClick={() => history("/editCertificate")}>
+              <i className="fa-regular fa-plus"></i>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

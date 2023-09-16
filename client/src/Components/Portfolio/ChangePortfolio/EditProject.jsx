@@ -29,7 +29,12 @@ const EditProject = () => {
 
   const saveProject = async () => {
     const emptyField = project.some(
-      (form) => form.url === "" || form.name === "" || form.technology === ""
+      (form) =>
+        form.url === "" ||
+        form.projectURL === "" ||
+        form.name === "" ||
+        form.technology === "" ||
+        form.description === ""
     );
 
     if (emptyField) {

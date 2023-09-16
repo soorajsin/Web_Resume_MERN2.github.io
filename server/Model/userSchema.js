@@ -73,6 +73,12 @@ const userSchema = new mongoose.Schema({
                     name: String,
                     technology: String,
                     description: String
+          }],
+          certificate: [{
+                    certificateIMGURL: String,
+                    certificateLiveURL: String,
+                    name: String,
+                    description: String
           }]
 
 

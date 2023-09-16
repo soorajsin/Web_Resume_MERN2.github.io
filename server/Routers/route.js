@@ -706,6 +706,48 @@ router.delete("/deleteProject", authentication, async (req, res) => {
                               error: "Internal Server Error not delete project"
                     })
           }
+});
+
+
+
+
+//edit certificate
+router.post("/editCertificate", authentication, async (req, res) => {
+          // console.log(req.body);
+          try {
+                    const {
+                              certificate
+                    } = req.body;
+
+                    if (!certificate) {
+                              res.status(422).json({
+                                        error: "Certificate not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        user.certificate.push(...certificate);
+
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+                                        res.status(201).json({
+                                                  status: 205,
+                                                  message: "Certificates added to the profile Successfully!",
+                                                  updatedUser
+                                        })
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal server error not add Certificate"
+                    })
+          }
 })
 
 
