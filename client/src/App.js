@@ -16,6 +16,7 @@ import Experience from "./Components/About/Experience/Experience";
 import EditService from "./Components/Service/ServiceChanged/EditService";
 import EditProject from "./Components/Portfolio/ChangePortfolio/EditProject";
 import EditCertificate from "./Components/Portfolio/Certificate/EditCertificate";
+import EditContact from "./Components/Contact/ChangeContact/EditContact";
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
           <Route path="/editExperience" element={<Experience/>}/>
           <Route path="/editService" element={<EditService/>}/>
           <Route path="/editProject" element={<EditProject/>}/>
-          <Route path="/editCertificate" element=<EditCertificate/>/>
+          <Route path="/editCertificate" element={<EditCertificate/>}/>
+          <Route path="/editContact" element={<EditContact/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -803,5 +803,47 @@ router.delete("/deleteCertificate", authentication, async (req, res) => {
 
 
 
+//editContact
+router.post("/editContact", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+
+                    const {
+                              contact
+                    } = req.body;
+
+                    if (!contact) {
+                              res.status(422).json({
+                                        error: "Not found contact"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        user.contact.push(...contact);
+
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+                                        res.status(201).json({
+                                                  status: 205,
+                                                  message: "Contact added successfully done",
+                                                  updatedUser
+                                        })
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error not add contact"
+                    })
+          }
+})
+
+
+
 
 module.exports = router;

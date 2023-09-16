@@ -1,0 +1,26 @@
+*{
+          margin: 0;
+          padding: 0;
+}
+.contact{
+          margin-top: 100px;
+          margin-left: 100px;
+}
+.contact .edit .contactEdit .box{
+          width: 100px;
+          height: 100px;
+          background-color: aqua;
+          text-align: center;
+          border-radius: 10px;
+          cursor: pointer;
+}
+.contact .edit .contactEdit .box i{
+          margin-top: 20px;
+          font-size: 60px;
+          cursor: pointer;
+}
+.contact .edit .contactEdit:hover .box{
+          background-color: rgb(194, 71, 71);
+          width: 105px;
+          height: 105px;
+}
