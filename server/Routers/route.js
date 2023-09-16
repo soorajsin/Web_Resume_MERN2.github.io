@@ -841,6 +841,56 @@ router.post("/editContact", authentication, async (req, res) => {
                               error: "Internal Server Error not add contact"
                     })
           }
+});
+
+
+//deleteContact
+router.delete("/deleteContact", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+
+                    const {
+                              contactId
+                    } = req.body;
+
+                    if (!contactId) {
+                              res.status(422).json({
+                                        error: "Contect id not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        const entryField = user.contact.find((contact) => contact._id.toString() === contactId);
+
+                                        if (!entryField) {
+                                                  res.status(422).json({
+                                                            error: "entryField not found"
+                                                  })
+                                        } else {
+                                                  // console.log(entryField);
+
+                                                  user.contact = user.contact.filter((contact) => contact._id.toString() !== contactId);
+
+                                                  const updatedUser = await user.save();
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: "Contact delete successfully done",
+                                                            updatedUser
+                                                  })
+                                        }
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error not delete contact"
+                    })
+          }
 })
 
 
