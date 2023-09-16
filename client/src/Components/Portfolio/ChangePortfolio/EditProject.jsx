@@ -8,16 +8,20 @@ const EditProject = () => {
   const [project, setProject] = useState([
     {
       url: "",
+      projectURL: "",
       name: "",
       technology: "",
+      description: "",
     },
   ]);
 
   const addProject = async () => {
     const newForm = {
       url: "",
+      projectURL: "",
       name: "",
       technology: "",
+      description: "",
     };
     setProject([...project, newForm]);
   };
@@ -67,11 +71,11 @@ const EditProject = () => {
           {project.map((subForm, index) => (
             <div key={index}>
               <div className="form">
-                <label htmlFor="url">URL</label>
+                <label htmlFor="url">Project Image URL</label>
                 <br />
                 <input
                   type="url"
-                  placeholder="Enter your project url..."
+                  placeholder="Enter your project img url..."
                   value={subForm.url}
                   onChange={(e) => {
                     const updatedProject = [...project];
@@ -82,7 +86,22 @@ const EditProject = () => {
               </div>
               <br />
               <div className="form">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="projectURL">Project URL</label>
+                <br />
+                <input
+                  type="text"
+                  placeholder="Enter your project url..."
+                  value={subForm.projectURL}
+                  onChange={(e) => {
+                    const updatedProject = [...project];
+                    updatedProject[index].projectURL = e.target.value;
+                    setProject(updatedProject);
+                  }}
+                />
+              </div>
+              <br />
+              <div className="form">
+                <label htmlFor="name">Project Name</label>
                 <br />
                 <input
                   type="text"
@@ -109,6 +128,22 @@ const EditProject = () => {
                     setProject(updatedProject);
                   }}
                 />
+              </div>
+              <br />
+              <div className="form">
+                <label htmlFor="description">Description</label>
+                <br />
+                <textarea
+                  placeholder="Enter your project description"
+                  value={subForm.description}
+                  onChange={(e) => {
+                    const updatedProject = [...project];
+                    updatedProject[index].description = e.target.value;
+                    setProject(updatedProject);
+                  }}
+                  cols="50"
+                  rows="2"
+                ></textarea>
               </div>
             </div>
           ))}

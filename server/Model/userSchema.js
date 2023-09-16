@@ -67,10 +67,12 @@ const userSchema = new mongoose.Schema({
                     name: String,
                     description: String
           }],
-          project:[{
-                    url:String,
-                    name:String,
-                    technology:String
+          project: [{
+                    url: String,
+                    projectURL: String,
+                    name: String,
+                    technology: String,
+                    description: String
           }]
 
 

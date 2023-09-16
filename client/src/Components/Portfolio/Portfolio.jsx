@@ -69,9 +69,12 @@ const Portfolio = () => {
             {userdata
               ? userdata.getData.project.map((project, index) => (
                   <div key={index} className="data">
-                    <img src={project.url} alt={project.name} />
+                    <a href={project.projectURL}>
+                      <img src={project.url} alt={project.name} />
+                    </a>
                     <h2>{project.name}</h2>
                     <h3>{project.technology}</h3>
+                    <p>{project.description}</p>
                     <div className="deleteIcon">
                       <i
                         onClick={() => deleteProject(project._id, index)}

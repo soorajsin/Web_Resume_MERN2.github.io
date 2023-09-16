@@ -88,3 +88,15 @@
 .portfolio .project .show .data:hover i {
           display: block;
 }
+
+.portfolio .project .show .data p {
+          font-size: 23px;
+          padding-left: 10px;
+          padding-right: 10px;
+          cursor: pointer;
+          display: none;
+}
+
+.portfolio .project .show .data:hover p {
+          display: block;
+}
