@@ -61,6 +61,29 @@ const Portfolio = () => {
     }
   };
 
+  const deleteCertificate = async (certificateId, index) => {
+    const token = await localStorage.getItem("userDataToken");
+
+    const data = await fetch("http://localhost:4000/deleteCertificate", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ certificateId }),
+    });
+
+    const res = await data.json();
+    // console.log(res);
+
+    if (res.status === 205) {
+      console.log(res);
+    } else {
+      console.log("not delete certificate");
+      history("*");
+    }
+  };
+
   return (
     <>
       <div className="portfolio">
@@ -113,7 +136,12 @@ const Portfolio = () => {
                     <h3>{certificate.name}</h3>
                     <p>{certificate.description}</p>
                     <div className="deleteIcon">
-                      <i className="fa-solid fa-trash"></i>
+                      <i
+                        onClick={() => {
+                          deleteCertificate(certificate._id, index);
+                        }}
+                        className="fa-solid fa-trash"
+                      ></i>
                     </div>
                   </div>
                 ))

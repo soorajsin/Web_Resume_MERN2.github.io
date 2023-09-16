@@ -748,6 +748,57 @@ router.post("/editCertificate", authentication, async (req, res) => {
                               error: "Internal server error not add Certificate"
                     })
           }
+});
+
+
+
+//delete certificate
+router.delete("/deleteCertificate", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+
+
+                    const {
+                              certificateId
+                    } = req.body;
+
+                    if (!certificateId) {
+                              res.status(422).json({
+                                        error: "certificat id not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "user not found"
+                                        })
+                              } else {
+                                        const entryField = user.certificate.find((certificate) => certificate._id.toString() === certificateId);
+
+                                        if (!entryField) {
+                                                  res.status(422).json({
+                                                            error: "entry field not found"
+                                                  })
+                                        } else {
+                                                  user.certificate = user.certificate.filter((certificate) => certificate._id.toString() !== certificateId);
+
+                                                  const updatedUser = await user.save();
+                                                  // console.log(updatedUser);
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: "Certificate successfully delete",
+                                                            updatedUser
+                                                  })
+                                        }
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server error not delete certificate"
+                    })
+          }
 })
 
 
