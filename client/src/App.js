@@ -14,6 +14,7 @@ import PersonalInfo from "./Components/About/PersonalInfo";
 import EditEducation from "./Components/About/EditEducation";
 import Experience from "./Components/About/Experience/Experience";
 import EditService from "./Components/Service/ServiceChanged/EditService";
+import EditProject from "./Components/Portfolio/ChangePortfolio/EditProject";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/editEducation" element={<EditEducation/>}/>
           <Route path="/editExperience" element={<Experience/>}/>
           <Route path="/editService" element={<EditService/>}/>
+          <Route path="/editProject" element={<EditProject/>}/>
         </Routes>
       </BrowserRouter>
     </>

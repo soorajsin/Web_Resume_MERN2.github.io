@@ -609,6 +609,103 @@ router.delete("/deleteService", authentication, async (req, res) => {
                               error: "Internal Server error not delete service"
                     })
           }
+});
+
+
+
+//edit project
+router.post("/editProject", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+                    const {
+                              project
+                    } = req.body;
+
+                    if (!project) {
+                              throw new Error("please enter the data");
+                    } else {
+                              // console.log(project);
+
+                              const user = req.getData;
+
+                              if (!user) {
+                                        return res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        // console.log(user);
+
+                                        user.project.push(...project);
+
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+                                        res.status(201).json({
+                                                  status: 205,
+                                                  message: "project added sucessfully",
+                                                  updatedUser
+                                        })
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error Project not add"
+                    })
+          }
+})
+
+
+
+//delete project
+router.delete("/deleteProject", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+
+                    const {
+                              projectId
+                    } = req.body;
+
+                    if (!projectId) {
+                              res.status(422).json({
+                                        error: "Project id not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "User not found"
+                                        })
+                              } else {
+                                        // console.log(user);
+
+                                        const entryProject = user.project.find((project) => project._id.toString() === projectId);
+
+                                        if (!entryProject) {
+                                                  res.status(422).json({
+                                                            error: "No entry for this project"
+                                                  })
+                                        } else {
+                                                  // console.log(entryProject);
+
+                                                  user.project = user.project.filter((project) => project._id.toString() !== projectId);
+
+                                                  const updatedUser = await user.save();
+                                                  // console.log(updatedUser);
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: "project deleted successfully",
+                                                            updatedUser
+                                                  })
+                                        }
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error not delete project"
+                    })
+          }
 })
 
 

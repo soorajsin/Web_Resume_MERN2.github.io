@@ -66,6 +66,11 @@ const userSchema = new mongoose.Schema({
                     url: String,
                     name: String,
                     description: String
+          }],
+          project:[{
+                    url:String,
+                    name:String,
+                    technology:String
           }]
 
 
