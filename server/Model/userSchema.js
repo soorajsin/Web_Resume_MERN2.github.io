@@ -84,6 +84,10 @@ const userSchema = new mongoose.Schema({
                     contactImgURL: String,
                     contactURL: String,
                     name: String
+          }],
+          photo: [{
+                    name: String,
+                    url: String
           }]
 
 

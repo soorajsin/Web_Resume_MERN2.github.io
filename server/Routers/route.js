@@ -891,6 +891,96 @@ router.delete("/deleteContact", authentication, async (req, res) => {
                               error: "Internal Server Error not delete contact"
                     })
           }
+});
+
+
+
+// editPhoto
+router.post("/editPhoto", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+
+                    const {
+                              photo
+                    } = req.body;
+
+                    if (!photo) {
+                              res.status(422).json({
+                                        error: "Photo not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "user not found"
+                                        })
+                              } else {
+                                        user.photo.push(photo);
+
+                                        const updatedUser = await user.save();
+                                        // console.log(updatedUser);
+
+                                        res.status(201).json({
+                                                  status: 205,
+                                                  message: "Photo added successfully",
+                                                  updatedUser
+                                        })
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal Server Error not add photo"
+                    })
+          }
+});
+
+
+//deletePhoto
+router.delete("/deletePhoto", authentication, async (req, res) => {
+          try {
+                    // console.log(req.body);
+
+                    const {
+                              photoId
+                    } = req.body;
+
+                    if (!photoId) {
+                              res.status(422).json({
+                                        error: "photo id not found"
+                              })
+                    } else {
+                              const user = req.getData;
+
+                              if (!user) {
+                                        res.status(201).json({
+                                                  error: "user not found"
+                                        })
+                              } else {
+                                        const emptyFields = user.photo.find((photo) => photo._id.toString() === photoId);
+
+                                        if (!emptyFields) {
+                                                  res.status(422).json({
+                                                            error: "empty fields not found"
+                                                  })
+                                        } else {
+                                                  user.photo = user.photo.filter((photo) => photo._id.toString() !== photoId);
+
+                                                  const updatedUser = await user.save();
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: "photo delete successfully done",
+                                                            updatedUser
+                                                  })
+                                        }
+                              }
+                    }
+          } catch (error) {
+                    res.status(422).json({
+                              error: "Internal error not delete photo"
+                    })
+          }
 })
 
 

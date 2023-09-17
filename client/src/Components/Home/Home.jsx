@@ -38,6 +38,29 @@ const Home = () => {
     HomeFetchData();
   });
 
+  const deletePhoto = async (photoId, index) => {
+    const token = await localStorage.getItem("userDataToken");
+
+    const data = await fetch("http://localhost:4000/deletePhoto", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ photoId }),
+    });
+
+    const res = await data.json();
+    // console.log(res);
+
+    if (res.status === 205) {
+      console.log(res);
+    } else {
+      console.log("not delete photot");
+      history("*");
+    }
+  };
+
   return (
     <>
       <div className="home">
@@ -59,16 +82,33 @@ const Home = () => {
           </button>
         </div>
         <div className="img">
+          <div className="show">
+            <div className="data">
+              {userdata
+                ? userdata.getData.photo.map((photo, index) => (
+                    <div key={index} className="data-sub">
+                      <img src={photo.url} alt={photo.name} />
+                      <div className="deleteIcon">
+                        <i
+                          onClick={() => deletePhoto(photo._id, index)}
+                          className="fa-sharp fa-solid fa-trash"
+                        ></i>
+                      </div>
+                    </div>
+                  ))
+                : "Loading"}
+            </div>
+          </div>
         </div>
         <div className="img">
-          {/* <div className="button">
+          <div className="button">
             <button
               onClick={() => history("/editPhoto")}
               className="btn btn-primary"
             >
               Set Profile Photo
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </>
