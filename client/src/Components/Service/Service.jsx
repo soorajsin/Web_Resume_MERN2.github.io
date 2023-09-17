@@ -53,6 +53,10 @@ const Service = () => {
       body: JSON.stringify({ serviceId }),
     });
 
+    if (data.ok) {
+      console.log("Failed to fetch", data.status);
+    }
+
     const res = await data.json();
     // console.log(res);
 

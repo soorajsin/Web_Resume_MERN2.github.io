@@ -24,6 +24,10 @@ const Portfolio = () => {
     const res = await data.json();
     // console.log(res);
 
+    if (data.ok) {
+      console.log("failed to fetch", data.status);
+    }
+
     if (res.status === 205) {
       // console.log(res);
       setUserData(res);

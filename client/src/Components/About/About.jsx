@@ -21,6 +21,10 @@ const About = () => {
       },
     });
 
+    if (data.ok) {
+      console.log("fetch request failed: ", data.status, data.statusText);
+    }
+
     const res = await data.json();
     // console.log(res);
 
@@ -105,7 +109,10 @@ const About = () => {
         </div>
         <div className="personalInfo">
           <div className="showInfo">
-            {userdata ? (
+            {userdata &&
+            userdata.getData &&
+            userdata.getData.personalInfo &&
+            userdata.getData.personalInfo[0] ? (
               <div className="showInfo-data">
                 <p>Birthday: {userdata.getData.personalInfo[0].birthday}</p>
                 <p>Age: {userdata.getData.personalInfo[0].age}</p>

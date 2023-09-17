@@ -20,6 +20,10 @@ const Contact = () => {
       },
     });
 
+    if (data.ok) {
+      console.log("failed to fetch", data.status);
+    }
+
     const res = await data.json();
 
     if (res.status === 205) {
