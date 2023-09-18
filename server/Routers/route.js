@@ -981,6 +981,65 @@ router.delete("/deletePhoto", authentication, async (req, res) => {
                               error: "Internal error not delete photo"
                     })
           }
+});
+
+
+
+//signOutToken
+router.post("/signOutToken", authentication, async (req, res) => {
+          try {
+                    // console.log(token);
+                    const user = req.getData;
+                    // console.log(user);
+
+                    if (!user) {
+                              res.status(201).json({
+                                        error: "user not found"
+                              })
+                    } else {
+
+
+                              const tokenClient = user.tokens;
+                              // console.log(tokenClient);
+
+                              if (!tokenClient) {
+                                        res.status(422).json({
+                                                  error: "token not found"
+                                        })
+                              } else {
+                                        // console.log(tokenClient);
+
+                                        const entryToken = user.tokens.find((tokens) => tokens._id.toString() !== tokenClient);
+                                        // console.log(entryToken);
+
+                                        if (!entryToken) {
+                                                  res.status(422).json({
+                                                            error: "not found token"
+                                                  })
+                                        } else {
+                                                  user.tokens = user.tokens.filter((tokens) => tokens._id.toString() !== tokenClient);
+                                                  // console.log(user);
+
+                                                  const updatedUser = await user.save();
+
+                                                  // console.log(updatedUser);
+
+                                                  res.status(201).json({
+                                                            status: 205,
+                                                            message: "token remove successfully dine",
+                                                            updatedUser
+                                                  });
+                                        }
+
+
+                              }
+                    }
+
+          } catch (error) {
+                    res.status(422).json({
+                              error: "internal server error not sign out"
+                    })
+          }
 })
 
 
